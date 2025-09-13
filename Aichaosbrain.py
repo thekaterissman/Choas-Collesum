@@ -1,5 +1,6 @@
-aiimport random
+import random
 import json  # For saving "memories"
+
 
 class AIChaosBrain:
     def __init__(self):
@@ -37,5 +38,6 @@ class AIChaosBrain:
                 self.player_moves = memory.get('moves', [])
         except FileNotFoundError:
             pass  # Fresh chaos
+
 
 # Usage: brain = AIChaosBrain(); brain.load_memory(); print(brain.throw_twist())
