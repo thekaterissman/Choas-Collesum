@@ -1,12 +1,12 @@
 class HapticSystem:
     def ground_rumble(self):
-        return "[HAPTIC]: The ground rumbles beneath your feet."
+        return "[HAPTIC]: The ancient stones of the Coliseum tremble beneath your feet, dislodging dust as old as the empire."
 
     def player_hit(self):
-        return "[HAPTIC]: You feel a sharp impact."
+        return "[HAPTIC]: The sharp, biting sting of a phantom blade slices across your senses."
 
     def dust_fly(self):
-        return "[HAPTIC]: You feel a light spray of dust and grit."
+        return "[HAPTIC]: A cloud of fine, gritty sand, kicked up from the arena floor, washes over you."
 
     def fire_crackle(self):
-        return "[HAPTIC]: You feel the warmth of crackling fire."
+        return "[HAPTIC]: The air grows hot as spectral flames crackle nearby, their warmth a ghostly caress on your skin."
