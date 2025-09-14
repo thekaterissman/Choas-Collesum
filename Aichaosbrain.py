@@ -13,17 +13,22 @@ class AIChaosBrain:
             self.player_moves = self.player_moves[-10:]  # Keep recent
         self.save_memory()
 
-    def throw_twist(self):
-        if 'dodge' in self.player_moves[-3:]:  # If you're dodging a lot...
-            twist = random.choice(self.fears)
-            if twist == 'dance_or_die':
-                return "AI whispers: Dance for a shield, or get wrecked! Groove time."
-            elif twist == 'sandstorm':
-                return "Sudden sandstorm! Haptics: Grit in your teeth. Dodge or bury."
-            else:
-                return "Floating islands spawn—gravity flips! Stomach drop incoming."
+    def throw_twist(self, reputation=0):
+        if reputation > 5:
+            return "A divine blessing! The Chaos Queens grant you a temporary shield."
+        elif reputation < -5:
+            return "A demonic curse! A shadowy figure appears and drains some of your health."
         else:
-            return "AI adapts: Basic roar from Leo. Feel it rumble."
+            if 'dodge' in self.player_moves[-3:]:  # If you're dodging a lot...
+                twist = random.choice(self.fears)
+                if twist == 'dance_or_die':
+                    return "AI whispers: Dance for a shield, or get wrecked! Groove time."
+                elif twist == 'sandstorm':
+                    return "Sudden sandstorm! Haptics: Grit in your teeth. Dodge or bury."
+                else:
+                    return "Floating islands spawn—gravity flips! Stomach drop incoming."
+            else:
+                return "AI adapts: Basic roar from Leo. Feel it rumble."
 
     def save_memory(self):
         memory = {'moves': self.player_moves}

@@ -22,18 +22,27 @@ class BeastBestiary:
             },
             'Hippogriff': {
                 'cost': 10,
-                'effect': 'A magical beast with the front half of a giant eagle and the rear half of a horse.'
+                'effect': 'A magical beast with the front half of a giant eagle and the rear half of a horse.',
+                'required_reputation': 10
             }
         }
         self.owned_beasts = []
 
-    def buy_beast(self, beast_name):
-        if beast_name in self.beasts and self.coins >= self.beasts[beast_name]['cost']:
-            self.coins -= self.beasts[beast_name]['cost']
-            self.owned_beasts.append(beast_name)
-            return f"Beast acquired: {beast_name}! {self.beasts[beast_name]['effect']}"
-        else:
+    def buy_beast(self, beast_name, reputation=0):
+        if beast_name not in self.beasts:
+            return "There is no such beast in the Bestiary."
+
+        beast = self.beasts[beast_name]
+
+        if self.coins < beast['cost']:
             return "You lack the coin for such a magnificent beast, champion. Embark on a quest!"
+
+        if 'required_reputation' in beast and reputation < beast['required_reputation']:
+            return f"The {beast_name} deems you unworthy. Your reputation is too low."
+
+        self.coins -= beast['cost']
+        self.owned_beasts.append(beast_name)
+        return f"Beast acquired: {beast_name}! {beast['effect']}"
 
     def ride_beast(self, beast_name):
         if beast_name in self.owned_beasts:

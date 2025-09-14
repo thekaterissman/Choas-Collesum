@@ -45,20 +45,25 @@ class GameEngine:
             print("7. Steal from a merchant (violates the law)")
             print("8. Face a moral dilemma")
             print("9. Leave the arena")
+            print("0. Set Reputation (debug)")
 
             choice = input("> ")
 
-            if choice == '1':
-                print(self.ai_brain.throw_twist())
+            if choice == '0':
+                new_rep = int(input("Enter new reputation: "))
+                self.ethics_system.reputation = new_rep
+                print(f"Reputation set to {new_rep}.")
+            elif choice == '1':
+                print(self.ai_brain.throw_twist(self.ethics_system.reputation))
             elif choice == '2':
                 beast_name = input("Enter beast name (e.g., Nemean_Lion): ")
-                print(self.bestiary.buy_beast(beast_name))
+                print(self.bestiary.buy_beast(beast_name, self.ethics_system.reputation))
             elif choice == '3':
                 bully_name = input("Enter bully's name: ")
                 print(self.gotcha_system.gotcha_bully(bully_name))
             elif choice == '4':
                 mode_name = input("Enter mode (hunter, survival, pvp, raid): ")
-                print(self.modes_manager.switch_mode(mode_name))
+                print(self.modes_manager.switch_mode(mode_name, self.ethics_system.reputation))
             elif choice == '5':
                 quest_coins = random.randint(1, 5)
                 self.bestiary.coins += quest_coins
